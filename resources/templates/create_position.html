@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Position</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/create_position.css}">
+</head>
+<body>
+<button class="custom-button" onclick="window.location.href='/admin/home'">
+    <div class="button-content">
+        <svg
+                width="25px"
+                height="25px"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                    fill="#000000"
+                    d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
+            ></path>
+            <path
+                    fill="#000000"
+                    d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
+            ></path>
+        </svg>
+    </div>
+    <p class="button-text">Go Back</p>
+</button>
+<div class="container">
+    <h2>Create Position</h2>
+    <form id="positionForm" th:action="@{/admin/positions/register}" th:object="${position}" method="post">
+        <div class="form-group">
+            <label for="name">Position Name</label>
+            <input type="text" id="name" th:field="*{positionName}" />
+        </div>
+        <div class="form-actions">
+            <button type="submit">Create</button>
+        </div>
+    </form>
+</div>
+<script th:src="@{/js/create_position.js}"></script>
+</body>
+</html>

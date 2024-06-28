@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Employee</title>
+    <link rel="stylesheet" th:href="@{/css/update_employee.css}">
+</head>
+<body>
+<button class="custom-button" onclick="window.location.href='/admin/home'">
+    <div class="button-content">
+        <svg
+                width="25px"
+                height="25px"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                    fill="#000000"
+                    d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
+            ></path>
+            <path
+                    fill="#000000"
+                    d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
+            ></path>
+        </svg>
+    </div>
+    <p class="button-text">Go Back</p>
+</button>
+<div class="container">
+    <h2>Update Employee</h2>
+    <form id="updateForm" th:action="@{/admin/users/update/{userId}(userId=${userUpdateDTO.userId})}" th:object="${userUpdateDTO}" method="post">
+        <input type="hidden" name="_method" value="put">
+        <input type="hidden" id="userId" th:field="*{userId}" />
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" th:field="*{username}" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" th:field="*{email}" />
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" th:field="*{password}" />
+        </div>
+        <div class="form-group">
+            <label for="role">Role</label>
+            <select id="role" th:field="*{role}">
+                <option th:each="role : ${roles}" th:value="${role}" th:text="${role}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="firstname">First Name</label>
+            <input type="text" id="firstname" th:field="*{employee.firstname}" />
+        </div>
+        <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <input type="text" id="lastname" th:field="*{employee.lastname}" />
+        </div>
+        <div class="form-group">
+            <label for="employeeEmail">Employee Email</label>
+            <input type="email" id="employeeEmail" th:field="*{employee.email}" />
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" id="phoneNumber" th:field="*{employee.phoneNumber}" />
+        </div>
+        <div class="form-group">
+            <label for="salary">Salary</label>
+            <input type="number" id="salary" th:field="*{employee.salary}" />
+        </div>
+        <div class="form-group">
+            <label for="department">Department</label>
+            <select id="department" th:field="*{employee.departmentId}">
+                <option th:each="department : ${departments}" th:value="${department.departmentId}" th:text="${department.departmentName}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="position">Position</label>
+            <select id="position" th:field="*{employee.positionId}">
+                <option th:each="position : ${positions}" th:value="${position.positionId}" th:text="${position.positionName}"></option>
+            </select>
+        </div>
+        <div class="form-actions">
+            <button type="submit">Update</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
